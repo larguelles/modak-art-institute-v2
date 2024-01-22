@@ -1,6 +1,10 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
+import Home from './src/screens/home';
+import Details from './src/screens/details';
+import Favorites from './src/screens/favorites';
+import SubmitArtwork from './src/screens/submit-artwork';
 
 const Stack = createNativeStackNavigator();
 
@@ -10,19 +14,20 @@ const App = (): React.JSX.Element => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={() => null}
-          options={screenOptions}
-        />
+        <Stack.Screen name="Home" component={Home} options={screenOptions} />
         <Stack.Screen
           name="Details"
-          component={() => null}
+          component={Details}
           options={screenOptions}
         />
         <Stack.Screen
           name="Favorites"
-          component={() => null}
+          component={Favorites}
+          options={screenOptions}
+        />
+        <Stack.Screen
+          name="SubmitArtwork"
+          component={SubmitArtwork}
           options={screenOptions}
         />
       </Stack.Navigator>
