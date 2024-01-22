@@ -5,8 +5,15 @@ import Home from './src/screens/home';
 import Details from './src/screens/details';
 import Favorites from './src/screens/favorites';
 import SubmitArtwork from './src/screens/submit-artwork';
+import {Artwork} from './src/api/store';
 
 const Stack = createNativeStackNavigator();
+
+export type RootStackParamList = {
+  Home: undefined;
+  Details: {data: Artwork; uri: string};
+  Favorites: undefined;
+};
 
 const App = (): React.JSX.Element => {
   const screenOptions = {headerShown: false};
