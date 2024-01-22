@@ -1,12 +1,12 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-const SubmitArtwork = () => {
+const Favorites = () => {
   return (
     <View>
-      <Text>Bocaaaa</Text>
+      <Text>Favorites</Text>
     </View>
   );
 };
 
-export default SubmitArtwork;
+export default Favorites;
