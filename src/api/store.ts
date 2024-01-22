@@ -167,7 +167,7 @@ const useArtworkStore = create<StoreType>(
   (set: StoreApi<StoreType>['setState']) => ({
     artworks: [],
     artworkById: {},
-    favorites: [], // Array to store favorite artwork IDs
+    favorites: [],
     fetchArtworks: async () => {
       try {
         const response: AxiosResponse<ArtworksResponse> = await axios.get(
@@ -211,20 +211,15 @@ const useArtworkStore = create<StoreType>(
     },
     addToFavorites: async (artworkId: string) => {
       try {
-        // Fetch existing favorites from AsyncStorage
         const currentFavoritesJSON = await AsyncStorage.getItem('favorites');
         const currentFavorites: string[] = currentFavoritesJSON
           ? JSON.parse(currentFavoritesJSON)
           : [];
-
-        // Update favorites array and store in AsyncStorage
         const updatedFavorites = [...currentFavorites, artworkId];
         await AsyncStorage.setItem(
           'favorites',
           JSON.stringify(updatedFavorites),
         );
-
-        // Update state
         set({favorites: updatedFavorites});
       } catch (error) {
         console.error('Error adding to favorites:', error);
