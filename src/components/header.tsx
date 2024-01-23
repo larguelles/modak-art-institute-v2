@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {useNavigation} from '@react-navigation/native';
 
 type HeaderProps = {
@@ -10,7 +10,7 @@ type HeaderProps = {
   renderGoBack: boolean;
 };
 
-export const Header: React.FC<HeaderProps> = ({
+const Header: React.FC<HeaderProps> = ({
   title,
   colors = ['#072a24', '#16534b'],
   renderGoBack,
@@ -27,7 +27,7 @@ export const Header: React.FC<HeaderProps> = ({
         <TouchableOpacity
           style={layoutStyles.iconContainer}
           onPress={() => navigation.goBack()}>
-          <Icon name="arrow-left" color="white" size={20} />
+          <FontAwesomeIcon icon="arrow-left" color="white" size={20} />
         </TouchableOpacity>
       )}
       <Text style={[textStyles.title, titleAdjustment]}>{title}</Text>
