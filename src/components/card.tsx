@@ -13,21 +13,34 @@ type CardProps = {
 
 const Card: FC<CardProps> = ({item, iiifUrl}) => {
   const navigation = useNavigation();
+
   const imageURL =
     iiifUrl + '/' + item?.image_id + '/full/360,200/0/default.jpg';
   const imageURLFull =
     iiifUrl + '/' + item?.image_id + '/full/full/0/default.jpg';
 
+  console.log('b', imageURLFull);
   return (
     <LinearGradient
-      colors={['black', getAccentColor({color: item?.color})]}
+      colors={[
+        'black',
+        item?.color ? getAccentColor({color: item?.color}) : '#16534b',
+      ]}
       style={layoutStyles.main}
       start={{x: 0, y: 1}}
       end={{x: 1, y: 1}}>
       <TouchableOpacity
         style={layoutStyles.container}
         onPress={() =>
-          navigation.navigate('Details', {data: item, uri: imageURLFull})
+          (
+            navigation.navigate as (
+              name: 'Details',
+              params: {data: Artwork; uri: string},
+            ) => void
+          )('Details', {
+            data: item,
+            uri: imageURLFull,
+          })
         }>
         <Text style={textStyles.title}>{item?.title}</Text>
         <View style={layoutStyles.details}>
