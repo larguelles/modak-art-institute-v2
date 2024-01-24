@@ -57,12 +57,14 @@ type StoreType = {
   artworks: ArtworksResponse;
   artworkById: {[key: string]: Artwork};
   favorites: string[];
+  currentPage: number;
+  easterEggsFound: string[];
   fetchArtworks: (page?: number) => Promise<void>;
   fetchArtworkById: (id: string) => Promise<void>;
   fetchFavorites: () => Promise<void>;
   addToFavorites: (artworkId: string) => Promise<void>;
-  currentPage: number;
   setCurrentPage: (page: number) => void;
+  addEasterEggFound: (id: string) => void;
 };
 
 const useArtworkStore = create<StoreType>(
@@ -89,6 +91,7 @@ const useArtworkStore = create<StoreType>(
     currentPage: 1,
     artworkById: {},
     favorites: [],
+    easterEggsFound: [],
     fetchArtworks: async (page = 1) => {
       try {
         const response: AxiosResponse<ArtworksResponse> = await axios.get(
@@ -217,6 +220,11 @@ const useArtworkStore = create<StoreType>(
       set({
         currentPage: page,
       });
+    },
+    addEasterEggFound: (id: string) => {
+      set(state => ({
+        easterEggsFound: [...state.easterEggsFound, id],
+      }));
     },
   }),
 );

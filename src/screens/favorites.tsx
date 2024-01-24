@@ -19,7 +19,7 @@ const Favorites: FC = () => {
 
   return (
     <View style={viewStyle}>
-      <Header title="Favorites" renderGoBack />
+      <Header title="Favorites" renderGoBack id="favs" />
       <FlatList data={artworks?.data} renderItem={renderItem} />
     </View>
   );

@@ -50,7 +50,7 @@ const Home: FC<HomeProps> = ({navigation}) => {
 
   return (
     <View style={layoutStyles.main}>
-      <Header renderGoBack={false} title="Modak Art Institute" />
+      <Header renderGoBack={false} title="Modak Art Institute" id="home" />
       <FlatList
         data={artworks?.data}
         renderItem={renderItem}

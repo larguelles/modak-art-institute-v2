@@ -4,6 +4,7 @@ import Header from '../components/header';
 import {RootStackParamList} from '../../App';
 import {RouteProp} from '@react-navigation/core';
 import FavoriteButton from '../components/fav-button';
+import useArtworkStore from '../api/store';
 
 const InfoText = ({
   type,
@@ -28,22 +29,38 @@ type DetailsProps = {
 
 const Details: FC<DetailsProps> = ({route}) => {
   const {data, uri} = route.params;
+  const {easterEggsFound} = useArtworkStore();
 
+  console.log('length before adding ', easterEggsFound.length);
+  console.log('content ', easterEggsFound);
+  console.log('info, data, ', data, uri);
   console.log('uri', uri);
-  const accentColor =
-    'hsl(' +
-    data?.color?.h +
-    ', ' +
-    data?.color?.s +
-    '%, ' +
-    data?.color?.l +
-    '%)';
+  const accentColor = data?.color
+    ? 'hsl(' +
+      data?.color?.h +
+      ', ' +
+      data?.color?.s +
+      '%, ' +
+      data?.color?.l +
+      '%)'
+    : '#16534b';
 
   return (
     <View style={layoutStyles.main}>
-      <Header title={data.title} colors={['black', accentColor]} renderGoBack />
+      <Header
+        title={data.title}
+        colors={['black', accentColor]}
+        renderGoBack
+        id="details"
+      />
       <ScrollView>
-        <Image source={{uri: uri}} style={layoutStyles.artwork} />
+        {data?.image_id === null ? (
+          <View style={layoutStyles.altText}>
+            <Text>We're sorry,there's no available image for this piece.</Text>
+          </View>
+        ) : (
+          <Image source={{uri: uri}} style={layoutStyles.artwork} />
+        )}
         <View style={layoutStyles.details}>
           <FavoriteButton id={data?.id} />
           <View style={layoutStyles.artistDisplay}>
@@ -83,6 +100,7 @@ const Details: FC<DetailsProps> = ({route}) => {
 const layoutStyles = StyleSheet.create({
   main: {
     flex: 1,
+    paddingBottom: 20,
   },
   artwork: {
     flex: 1,
@@ -116,6 +134,12 @@ const layoutStyles = StyleSheet.create({
   },
   artistDisplay: {
     width: '60%',
+  },
+  altText: {
+    width: 200,
+    height: 200,
+    alignSelf: 'center',
+    justifyContent: 'center',
   },
 });
 
