@@ -6,8 +6,6 @@ const NothingToSeeHere = ({id}: {id: string}) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
   const {easterEggsFound} = useArtworkStore();
 
-  console.log('length after adding ', easterEggsFound.length);
-
   let title;
   const missing = 3 - easterEggsFound.length;
   if (easterEggsFound.length === 3) {

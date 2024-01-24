@@ -19,7 +19,6 @@ const Card: FC<CardProps> = ({item, iiifUrl}) => {
   const imageURLFull =
     iiifUrl + '/' + item?.image_id + '/full/full/0/default.jpg';
 
-  console.log('b', imageURLFull);
   return (
     <LinearGradient
       colors={[

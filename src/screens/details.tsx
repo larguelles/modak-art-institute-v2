@@ -29,12 +29,6 @@ type DetailsProps = {
 
 const Details: FC<DetailsProps> = ({route}) => {
   const {data, uri} = route.params;
-  const {easterEggsFound} = useArtworkStore();
-
-  console.log('length before adding ', easterEggsFound.length);
-  console.log('content ', easterEggsFound);
-  console.log('info, data, ', data, uri);
-  console.log('uri', uri);
   const accentColor = data?.color
     ? 'hsl(' +
       data?.color?.h +

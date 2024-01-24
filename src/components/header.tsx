@@ -32,7 +32,6 @@ const Header: React.FC<HeaderProps> = ({
 
   useEffect(() => {
     if (nothing) {
-      console.log('boca');
       setTimeout(setNothing, 5000, false);
     }
   }, [nothing]);
